@@ -1,0 +1,21 @@
+
+* {
+  margin: 0;
+  padding: 0;
+}
+html,body{
+  height: 100%;
+}
+body{
+  overscroll-behavior: contain;
+}
+
+.touch-indicator {
+  position: absolute;
+  background-color: gray;
+  width: 42px;
+  height: 42px;
+  border-radius: 21px;
+  margin-left: -21px;
+  margin-top: -21px;
+}
