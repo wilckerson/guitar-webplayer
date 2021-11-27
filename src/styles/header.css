@@ -1,0 +1,22 @@
+header {
+  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header .text-logo h1 {
+  font-weight: bold;
+  font-size: 1.5em;
+  line-height: 0.7em;
+  color: #c3b39b;
+}
+
+header .text-logo h2 {
+  font-weight: normal;
+  font-size: 1.25em;
+  color: #ff7f50;
+}
+
+header small {
+  font-size: 0.61em;
+}

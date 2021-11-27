@@ -1,0 +1,14 @@
+#scale-container {
+  background-color: green;
+  /* height: 100vh; */
+}
+
+#scale {
+  border: 2px solid #584134;
+  background: rgb(71 52 40);
+  background: linear-gradient(88deg, rgb(71 52 40) 0%, rgb(108 80 66) 100%);
+  width: 90%;
+  max-width: 500px;
+  margin: 0 auto;
+  height: 100%;
+}

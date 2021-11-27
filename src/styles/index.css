@@ -1,13 +1,30 @@
-
 * {
   margin: 0;
   padding: 0;
 }
-html,body{
+html,
+body {
   height: 100%;
 }
-body{
+body {
+  font-family: Verdana, Helvetica, Arial, sans-serif;
   overscroll-behavior: contain;
+  background: #1a1515;
+  color: white;
+}
+
+#app {
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+}
+
+#header {
+  flex: 0 1 auto;
+}
+
+#content {
+  flex: 1 1 auto;
 }
 
 .touch-indicator {

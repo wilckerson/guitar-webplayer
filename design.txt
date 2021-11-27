@@ -1,0 +1,52 @@
+tun12EDO:Scale = {
+    RootNote: 110Hz,
+    GuitarStringNotes: [GetRatioByNoteName("E2"),"A","D","G","B","E"]
+}
+
+tun12EDO:Scale = {
+    RootNote: 110Hz,
+    
+    GuitarStrings:[
+        {
+            OpenRatio: 1 * Math.pow(2, 10/12),
+            Frets:[
+                Math.pow(2, 0/12), 
+                ...,
+                Math.pow(2, 12/12)
+            ]
+        },
+        {
+            OpenRatio: 1,
+            Frets:[
+                Math.pow(2, 0/12), 
+                ...,
+                Math.pow(2, 12/12)
+            ]
+        },
+        {
+            OpenRatio: 1/Math.pow(2, 5/12),
+            Frets:[
+                Math.pow(2, 0/12), 
+                ...,
+                Math.pow(2, 12/12)
+            ]
+        }
+    ]
+}
+
+
+Scale
+    GuitarStrings:GuitarString[]
+
+GuitarString
+    OpenNote:Note
+    Frets:Fret[]
+
+Fret
+    GetPosition => ratio, cent, string length
+    Ratio:decimal
+    GetNoteName => ratio, openNote
+
+Note
+    Name
+    Frequency
