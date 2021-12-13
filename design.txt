@@ -1,3 +1,64 @@
+Kite Guitar Web Player 
+
+v1.0
+========
+
+***Mobile version
+-Full height app
+-Top bar with app name and infos
+--App name
+--Menu with about and github
+-About screen
+--Explanation text
+--Link to Kite guitar site
+--Github issue for support
+--Developed by (my email)
+-Centered container 
+--Divided in six vertial columns (flex)
+--Each column have 37 soundButtons (1 for open string and 36 for frets)
+--Background close to a real guitar
+---Neck
+---Nut (after the first open string soundButton)
+---Frets (In the end of each soundButton)
+---Strings (traversing the column)
+----String playing animation (vibrates after the pressed fret)
+-Right custom slide for scroll bar
+--Scrolls betwen the 37 soundButtons
+-SoundButton
+--No borders and background
+--Note name circle (low opacity)
+--Pressed state (highlight border and no opacity)
+--Note frequency
+--When press/release the button, use the audio engine according with the current string 
+--Suport touch and mouse click
+-AudioEngine
+--6 channels (One by string)
+--Base mp3/wav sound and frequency
+--Play sound at a channel
+---Pause the current sound of the channel if any
+---Support pitched changed sound
+--Stop sound
+-Player Board
+--Store the 41 up/down note names
+--Set the open string notes and frequencies (Down major tuning)
+--Generates the other 36 soundButtons for each string based on the open note
+---Calculate frequency based on the fret index and open string frequency
+---Calculate note name based on the fret index and open string note
+---Set the string index
+
+v2.0
+========
+-Support slide
+-Support note expressivity (glide)
+-Desktop version (Keyboard play)
+-Customize open notes (other tuning options)
+-Highlight scales (Tonic center, scale list)
+
+
+
+----------------------------------------
+
+
 tun12EDO:Scale = {
     RootNote: 110Hz,
     GuitarStringNotes: [GetRatioByNoteName("E2"),"A","D","G","B","E"]
