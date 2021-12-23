@@ -14,7 +14,7 @@ v1.0
 --Github issue for support
 --Developed by (my email)
 -Centered container 
---ok Divided in six vertial columns (flex)
+--Divided in six vertial columns (flex)
 --Each column have 37 soundButtons (1 for open string and 36 for frets)
 --Background close to a real guitar
 ---Neck

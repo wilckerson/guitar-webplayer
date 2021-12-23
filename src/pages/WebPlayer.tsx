@@ -1,10 +1,15 @@
+import { Box, Container } from "@mui/material";
+import Scale from "../components/Scale/Scale";
 import TopBar from "../components/TopBar";
 
 export default function WebPlayer() {
   return (
-    <div>
+    <Box sx={{ display: "flex", height: "100%", flexDirection: "column" }}>
       <TopBar />
-      <div className="container">WebPlayer</div>
-    </div>
+
+      <Container maxWidth="sm" sx={{ flexGrow: 1 }}>
+        <Scale />
+      </Container>
+    </Box>
   );
 }
