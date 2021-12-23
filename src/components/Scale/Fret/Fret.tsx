@@ -10,7 +10,7 @@ export default function Fret(props: IFretProps) {
   return (
     <SoundButton>
       <>
-        <div className={classes.fretContainer}>Fret {props.index}</div>
+        <div className={classes.fretContainer}>&nbsp;</div>
         <div className={classes.fret}></div>
       </>
     </SoundButton>

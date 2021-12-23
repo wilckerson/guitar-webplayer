@@ -1,5 +1,5 @@
 import { Stack } from "@mui/material";
-import GuitarString from "./GuitarString";
+import GuitarStringContainer from "./GuitarStringContainer/GuitarStringContainer";
 import classes from "./Scale.module.css";
 
 export default function Scale() {
@@ -13,7 +13,7 @@ export default function Scale() {
       className={classes.scale}
     >
       {[...Array(guitarStringsCount)].map((item, index) => (
-        <GuitarString key={"stringIdx" + index} index={index} />
+        <GuitarStringContainer key={"stringIdx" + index} index={index} />
       ))}
     </Stack>
   );

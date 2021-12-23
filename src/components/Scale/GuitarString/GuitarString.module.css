@@ -1,0 +1,9 @@
+.guitarString {
+  width: 4px;
+  background: #8f8472;
+  background: linear-gradient(90deg, #616161 0%, #b1a694 50%, #616161 100%);
+  box-shadow: 2px 0px 4px 0px rgb(0 0 0 / 70%);
+  height: 100%;
+  position: absolute;
+  left: 50%;
+}
