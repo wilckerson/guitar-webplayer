@@ -14,13 +14,15 @@ export default function GuitarStringContainer(props: IGuitarStringProps) {
   return (
     <div className={classes.guitarStringContainer}>
       <GuitarString />
-      <SoundButton>
-        <div></div>
-      </SoundButton>
+      <Fret hideFretWire={true} index={0} guitarStringIndex={props.index} />
 
       <NutPiece />
       {fretsArray.map((item, index) => (
-        <Fret key={`string${props.index}-fret${index + 1}`} index={index + 1} />
+        <Fret
+          key={`string${props.index}-fret${index + 1}`}
+          index={index + 1}
+          guitarStringIndex={props.index}
+        />
       ))}
     </div>
   );

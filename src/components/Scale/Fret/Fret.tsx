@@ -4,6 +4,8 @@ import classes from "./Fret.module.css";
 
 export interface IFretProps {
   index: number;
+  guitarStringIndex: number;
+  hideFretWire?: boolean;
 }
 
 export default function Fret(props: IFretProps) {
@@ -11,7 +13,7 @@ export default function Fret(props: IFretProps) {
     <SoundButton>
       <>
         <div className={classes.fretContainer}>&nbsp;</div>
-        <div className={classes.fret}></div>
+        {!props.hideFretWire && <div className={classes.fret}></div>}
       </>
     </SoundButton>
   );
