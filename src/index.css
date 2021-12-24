@@ -5,6 +5,7 @@ body,
 }
 
 body {
+  user-select: none;
   margin: 0;
   overscroll-behavior: contain;
   background: #1a1515;

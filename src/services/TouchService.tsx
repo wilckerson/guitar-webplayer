@@ -84,9 +84,13 @@ function handleTouch(touchEvent: React.TouchEvent) {
     }
 
     const lastTouchedNote = lastTouchedNotes[currentTouch.identifier];
-    if (lastTouchedNote) {
-      //Verify is same note (string, fret)
-      //continue
+    const currentNoteIsSameAsLastNote =
+      lastTouchedNote &&
+      lastTouchedNote.guitarStringIndex === touchedNote.guitarStringIndex &&
+      lastTouchedNote.fretIndex === touchedNote.fretIndex;
+
+    if (currentNoteIsSameAsLastNote) {
+      continue;
     }
 
     lastTouchedNotes[currentTouch.identifier] = touchedNote;
