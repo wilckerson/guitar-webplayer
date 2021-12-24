@@ -1,6 +1,3 @@
-import { Box } from "@mui/material";
-import React from "react";
-import SoundButton from "../../SoundButton/SoundButton";
 import Fret from "../Fret/Fret";
 import GuitarString from "../GuitarString/GuitarString";
 import NutPiece from "../NutPiece/NutPiece";
@@ -14,7 +11,7 @@ export default function GuitarStringContainer(props: IGuitarStringProps) {
   return (
     <div className={classes.guitarStringContainer}>
       <GuitarString />
-      <Fret hideFretWire={true} index={0} guitarStringIndex={props.index} />
+      <Fret isOpenNote={true} index={0} guitarStringIndex={props.index} />
 
       <NutPiece />
       {fretsArray.map((item, index) => (

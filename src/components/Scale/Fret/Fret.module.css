@@ -9,3 +9,7 @@
   min-height: 90px;
   pointer-events: none;
 }
+
+.openNote {
+  min-height: 60px;
+}
