@@ -8,7 +8,7 @@ export default function WebPlayer() {
   const [debugText, setDebugText] = useState("Debug text");
 
   TouchService.setOnChangeListener((guitarStringIndex, fretIndex) => {
-    //console.log(`Str: ${guitarStringIndex} Frt: ${fretIndex}`);
+    console.log(`Str: ${guitarStringIndex} Frt: ${fretIndex}`);
     setDebugText(`Str: ${guitarStringIndex} Frt: ${fretIndex}`);
   });
 

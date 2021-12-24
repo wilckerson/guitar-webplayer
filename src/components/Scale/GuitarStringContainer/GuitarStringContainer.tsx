@@ -1,3 +1,4 @@
+import Config from "../../../Config";
 import Fret from "../Fret/Fret";
 import GuitarString from "../GuitarString/GuitarString";
 import NutPiece from "../NutPiece/NutPiece";
@@ -7,7 +8,7 @@ interface IGuitarStringProps {
   index: number;
 }
 export default function GuitarStringContainer(props: IGuitarStringProps) {
-  const fretsArray = [...Array(5)]; //36
+  const fretsArray = [...Array(Config.fretsPerString)];
   return (
     <div className={classes.guitarStringContainer}>
       <GuitarString />

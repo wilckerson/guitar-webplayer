@@ -9,4 +9,5 @@ body {
   overscroll-behavior: contain;
   background: #1a1515;
   color: white;
+  overflow-y: hidden;
 }

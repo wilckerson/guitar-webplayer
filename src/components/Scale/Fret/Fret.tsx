@@ -18,7 +18,7 @@ export default function Fret(props: IFretProps) {
           ${classes.fretContainer} 
           ${props.isOpenNote && classes.openNote}`}
       >
-        Info
+        &nbsp;
       </div>
       {!props.isOpenNote && <div className={classes.fret}></div>}
     </div>
