@@ -2,8 +2,10 @@
   height: 6px;
   background: #e1e3e4;
   background: linear-gradient(0deg, #b1acaa 0%, #e1e3e4 50%, #b1acaa 100%);
+  pointer-events: none;
 }
 
 .fretContainer {
   min-height: 90px;
+  pointer-events: none;
 }

@@ -10,7 +10,7 @@ interface IGuitarStringProps {
   index: number;
 }
 export default function GuitarStringContainer(props: IGuitarStringProps) {
-  const fretsArray = [...Array(6)]; //36
+  const fretsArray = [...Array(5)]; //36
   return (
     <div className={classes.guitarStringContainer}>
       <GuitarString />

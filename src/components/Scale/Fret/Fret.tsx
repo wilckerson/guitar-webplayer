@@ -10,7 +10,10 @@ export interface IFretProps {
 
 export default function Fret(props: IFretProps) {
   return (
-    <SoundButton>
+    <SoundButton
+      guitarStringIndex={props.guitarStringIndex}
+      fretIndex={props.index}
+    >
       <>
         <div className={classes.fretContainer}>&nbsp;</div>
         {!props.hideFretWire && <div className={classes.fret}></div>}

@@ -6,26 +6,26 @@ v1.0
 ***Mobile version
 -Full height app
 -Top bar with app name and infos
---App name
+--ok App name
 --Menu with about and github
 -About screen
 --Explanation text
 --Link to Kite guitar site
 --Github issue for support
 --Developed by (my email)
--Centered container 
---Divided in six vertial columns (flex)
---Each column have 37 soundButtons (1 for open string and 36 for frets)
---Background close to a real guitar
+-ok Centered container 
+--ok Divided in six vertial columns (flex)
+--ok Each column have 37 soundButtons (1 for open string and 36 for frets)
+--ok Background close to a real guitar
 ---Neck
----Nut (after the first open string soundButton)
----Frets (In the end of each soundButton)
----Strings (traversing the column)
+---ok Nut (after the first open string soundButton)
+---ok Frets (In the end of each soundButton)
+---ok Strings (traversing the column)
 ----String playing animation (vibrates after the pressed fret)
 -Right custom slide for scroll bar
 --Scrolls betwen the 37 soundButtons
 -SoundButton
---No borders and background
+--ok No borders and background
 --Note name circle (low opacity)
 --Pressed state (highlight border and no opacity)
 --Note frequency
