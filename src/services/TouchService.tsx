@@ -1,12 +1,19 @@
-type TouchServiceOnChangeListener =
-  | ((guitarStringIndex: number, fretIndex: number) => void)
-  | undefined;
-let onChangeListener: TouchServiceOnChangeListener = undefined;
+import Config from "../Config";
+
+type TouchServiceListener = ((note: TouchedNote) => void) | undefined;
+
+type TouchedNote = {
+  guitarStringIndex: number;
+  fretIndex: number;
+};
+
+let onTouchNoteStart: TouchServiceListener = undefined;
+let onTouchNoteEnd: TouchServiceListener = undefined;
 
 const lastTouchPositionsOnString: (number | undefined)[] = [];
-const MINIMUM_DRAG_ONSTRING = 30;
+const lastTouchedNotes: (TouchedNote | undefined)[] = [];
 
-function isTouchStartOrEnoughDragOnString(
+function isTouchStartOrEnoughDrag(
   minimumDragOnString: number,
   touchIdentifier: number,
   touchPosition: number
@@ -30,7 +37,7 @@ function isTouchStartOrEnoughDragOnString(
   return isTouchStart || isEnoughDragOnString;
 }
 
-function getDataFromTouchPoint(x: number, y: number) {
+function getTouchedNoteFromPosition(x: number, y: number) {
   const touchedElement = document.elementFromPoint(x, y);
   if (touchedElement) {
     const guitarStringIndex = parseInt(
@@ -41,7 +48,11 @@ function getDataFromTouchPoint(x: number, y: number) {
     );
 
     if (!isNaN(guitarStringIndex) && !isNaN(fretIndex)) {
-      return [guitarStringIndex, fretIndex];
+      const touchedNote: TouchedNote = {
+        guitarStringIndex: guitarStringIndex,
+        fretIndex: fretIndex,
+      };
+      return touchedNote;
     }
   }
 
@@ -54,8 +65,8 @@ function handleTouch(touchEvent: React.TouchEvent) {
   for (let index = 0; index < touchEvent.touches.length; index++) {
     const currentTouch = touchEvent.touches[index];
 
-    const isNewTouch = isTouchStartOrEnoughDragOnString(
-      MINIMUM_DRAG_ONSTRING,
+    const isNewTouch = isTouchStartOrEnoughDrag(
+      Config.minimumDrag,
       currentTouch.identifier,
       currentTouch.pageY
     );
@@ -64,10 +75,24 @@ function handleTouch(touchEvent: React.TouchEvent) {
       continue;
     }
 
-    const data = getDataFromTouchPoint(currentTouch.pageX, currentTouch.pageY);
+    const touchedNote = getTouchedNoteFromPosition(
+      currentTouch.pageX,
+      currentTouch.pageY
+    );
+    if (!touchedNote) {
+      continue;
+    }
 
-    if (data && onChangeListener !== undefined) {
-      onChangeListener(data[0], data[1]);
+    const lastTouchedNote = lastTouchedNotes[currentTouch.identifier];
+    if (lastTouchedNote) {
+      //Verify is same note (string, fret)
+      //continue
+    }
+
+    lastTouchedNotes[currentTouch.identifier] = touchedNote;
+
+    if (onTouchNoteStart !== undefined) {
+      onTouchNoteStart(touchedNote);
     }
   }
 }
@@ -75,14 +100,26 @@ function handleTouch(touchEvent: React.TouchEvent) {
 function handleTouchEnd(touchEvent: React.TouchEvent) {
   const currentTouch = touchEvent.changedTouches[0];
   lastTouchPositionsOnString[currentTouch.identifier] = undefined;
+
+  const lastTouchedNote = lastTouchedNotes[currentTouch.identifier];
+
+  if (lastTouchedNote && onTouchNoteEnd !== undefined) {
+    onTouchNoteEnd(lastTouchedNote);
+  }
+
+  lastTouchedNotes[currentTouch.identifier] = undefined;
 }
 
-function setOnChangeListener(listener: TouchServiceOnChangeListener) {
-  onChangeListener = listener;
+function setListeners(
+  onTouchNoteStartListener: TouchServiceListener,
+  onTouchNoteEndListener: TouchServiceListener
+) {
+  onTouchNoteStart = onTouchNoteStartListener;
+  onTouchNoteEnd = onTouchNoteEndListener;
 }
 
 export default {
   handleTouch,
   handleTouchEnd,
-  setOnChangeListener,
+  setListeners,
 };

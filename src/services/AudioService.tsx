@@ -1,43 +1,53 @@
 import { Howl } from "howler";
-import audioSamplePath from "../assets/audio-samples/Alesis-Fusion-Clean-Guitar-C3.wav";
 
-interface IAudioCacheItem {
+interface IAudioChannel {
   inUse: boolean;
   sound: Howl;
 }
 
-const audioCache: IAudioCacheItem[] = [];
-const AUDIO_CACHE_SIZE = 1;
+const audioChannels: IAudioChannel[] = [];
 
-function initAudioCache() {
-  if (audioCache.length == 0) {
-    for (let index = 0; index < AUDIO_CACHE_SIZE; index++) {
-      var audioCacheItem = {
+function initAudioChannels(
+  audioChannelsCount: number,
+  audioSamplePath: string
+) {
+  if (audioChannels.length == 0) {
+    for (let index = 0; index < audioChannelsCount; index++) {
+      var audioChannelsItem = {
         inUse: false,
         sound: new Howl({ src: [audioSamplePath] }),
       };
-      audioCache.push(audioCacheItem);
+      audioChannels.push(audioChannelsItem);
     }
   }
 }
 
-function playSoundNote() {
-  initAudioCache();
+function getAudioChannel(channel: number) {
+  if (audioChannels.length == 0) {
+    throw `[AudioService] Audio channels were not initialized. You need to invoke AudioService.initAudioChannels(audioChannelsCount) before use play/stop`;
+  }
 
-  //   const audioCacheIdx = audioCache.findIndex((i) => i.inUse == false);
-  const audioCacheIdx = 0;
-  //   if (audioCacheIdx != -1) {
-  //     audioCache[audioCacheIdx].inUse = true;
+  if (channel < 0 || channel >= audioChannels.length) {
+    throw `[AudioService] Invalid channel index: ${channel}. Channels count: ${audioChannels.length}`;
+  }
 
-  var sound = audioCache[audioCacheIdx].sound;
+  return audioChannels[channel];
+}
 
-  sound.volume(1);
-  //sound.rate(rate);
-  sound.play();
-  //}
+function playSoundNote(ratio: number, channel: number) {
+  const audioChannel = getAudioChannel(channel);
+  audioChannel.sound.volume(1);
+  audioChannel.sound.rate(ratio);
+  audioChannel.sound.play();
+}
+
+function stopSoundNote(channel: number) {
+  const audioChannel = getAudioChannel(channel);
+  audioChannel.sound.fade(1, 0, 500);
 }
 
 export default {
-  initAudioCache,
+  initAudioChannels,
   playSoundNote,
+  stopSoundNote,
 };

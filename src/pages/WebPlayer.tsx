@@ -2,20 +2,36 @@ import { Box, Container } from "@mui/material";
 import React, { useState } from "react";
 import Scale from "../components/Scale/Scale";
 import TopBar from "../components/TopBar";
+import Config from "../Config";
 import AudioService from "../services/AudioService";
 import TouchService from "../services/TouchService";
+import TuningService from "../services/TuningService";
 
 export default function WebPlayer() {
   const [debugText, setDebugText] = useState("Debug text");
 
-  TouchService.setOnChangeListener((guitarStringIndex, fretIndex) => {
-    console.log(`Str: ${guitarStringIndex} Frt: ${fretIndex}`);
-    setDebugText(`Str: ${guitarStringIndex} Frt: ${fretIndex}`);
+  TouchService.setListeners(
+    function onTouchNoteStart(note) {
+      //console.log(`Str: ${guitarStringIndex} Frt: ${fretIndex}`);
+      //setDebugText(`Str: ${guitarStringIndex} Frt: ${fretIndex}`);
 
-    //TuningService.getRatio(guitarStringIndex, fretIndex, AudioService)
+      const ratio = TuningService.getRatioFromMainFrequency(
+        note.guitarStringIndex,
+        note.fretIndex,
+        Config.audioSampleMainFrequency
+      );
 
-    AudioService.playSoundNote();
-  });
+      AudioService.initAudioChannels(
+        Config.guitarStringsCount,
+        Config.audioSamplePath
+      );
+      AudioService.playSoundNote(ratio, note.guitarStringIndex);
+    },
+    function onTouchNoteEnd(note) {
+      console.log("touchEnd", note.guitarStringIndex);
+      AudioService.stopSoundNote(note.guitarStringIndex);
+    }
+  );
 
   return (
     <div
