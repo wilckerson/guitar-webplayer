@@ -2,6 +2,7 @@ import { Box, Container } from "@mui/material";
 import React, { useState } from "react";
 import Scale from "../components/Scale/Scale";
 import TopBar from "../components/TopBar";
+import AudioService from "../services/AudioService";
 import TouchService from "../services/TouchService";
 
 export default function WebPlayer() {
@@ -10,6 +11,10 @@ export default function WebPlayer() {
   TouchService.setOnChangeListener((guitarStringIndex, fretIndex) => {
     console.log(`Str: ${guitarStringIndex} Frt: ${fretIndex}`);
     setDebugText(`Str: ${guitarStringIndex} Frt: ${fretIndex}`);
+
+    //TuningService.getRatio(guitarStringIndex, fretIndex, AudioService)
+
+    AudioService.playSoundNote();
   });
 
   return (
