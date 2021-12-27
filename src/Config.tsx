@@ -5,7 +5,7 @@ export default {
   audioSamplePath,
   audioSampleMainFrequency: 130.81,
   guitarStringsCount: 6,
-  fretsPerString: 7, //36
+  fretsPerString: 5, //36
   minimumDrag: 30,
   cssVariables: {
     fretSize: "80px",
