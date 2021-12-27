@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import AudioService from "./services/AudioService";
-import Config from "./Config";
+import Config, { cssVariablesConfig } from "./Config";
 import GuitarWebPlayerService from "./services/GuitarWebPlayerService";
 
 // AudioService.initAudioChannels(
@@ -24,8 +24,8 @@ ReactDOM.render(
 );
 
 function applyConfigCssVariables() {
-  const keys = Object.keys(Config.cssVariables);
-  const values = Object.values(Config.cssVariables);
+  const keys = Object.keys(cssVariablesConfig);
+  const values = Object.values(cssVariablesConfig);
   const styleContent = keys
     .map((key, index) => `--${key}: ${values[index]};`)
     .join(" ");

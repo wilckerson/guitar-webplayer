@@ -5,9 +5,9 @@ export default function App() {
   const darkTheme = createTheme({
     palette: {
       mode: "dark",
-      // primary: {
-      //   main: "#ff0000",
-      // },
+      primary: {
+        main: "#ff7f50",
+      },
       background: {
         // default: "#ff0000",
         paper: "#1a1515",

@@ -1,14 +1,18 @@
 import audioSamplePath from "./assets/audio-samples/Alesis-Fusion-Clean-Guitar-C3.wav";
 // import audioSamplePath from "./assets/audio-samples/homeGuitar.wav";
 
-export default {
+const config = {
   audioSamplePath,
   audioSampleMainFrequency: 130.81,
   guitarStringsCount: 6,
-  fretsPerString: 5, //36
+  fretsPerString: 36,
   minimumDrag: 30,
-  cssVariables: {
-    fretSize: "80px",
-    openNoteSize: "60px",
-  },
+  neckScrollEndPadding: 32,
 };
+
+export const cssVariablesConfig = {
+  fretSize: "80px",
+  openNoteSize: "60px",
+};
+
+export default config;
