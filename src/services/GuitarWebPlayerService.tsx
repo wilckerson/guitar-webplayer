@@ -7,7 +7,7 @@ function onTouchNoteStart(note: TouchedNote) {
   //console.log(`Str: ${guitarStringIndex} Frt: ${fretIndex}`);
   //setDebugText(`Str: ${guitarStringIndex} Frt: ${fretIndex}`);
 
-  const ratio = TuningService.getRatioFromMainFrequency(
+  const ratio = TuningService.getRatioFromFret(
     note.guitarStringIndex,
     note.fretIndex,
     Config.audioSampleMainFrequency

@@ -14,9 +14,21 @@ import GuitarWebPlayerService from "./services/GuitarWebPlayerService";
 
 GuitarWebPlayerService.init();
 
+applyConfigCssVariables();
+
 ReactDOM.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
   document.getElementById("root")
 );
+
+function applyConfigCssVariables() {
+  const keys = Object.keys(Config.cssVariables);
+  const values = Object.values(Config.cssVariables);
+  const styleContent = keys
+    .map((key, index) => `--${key}: ${values[index]};`)
+    .join(" ");
+
+  document.documentElement.setAttribute("style", styleContent);
+}
