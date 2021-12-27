@@ -13,7 +13,7 @@ function getRatioFromEqualTemperament(
 function getRatioFromFret(
   guitarStringIndex: number,
   fretIndex: number,
-  mainFrequency: number
+  audioSampleMainFrequency: number
 ): number {
   // //Kite Tunning
   // const fretRatio = getRatioFromEqualTemperament(41, 4, fretIndex);
@@ -40,14 +40,17 @@ function getRatioFromFret(
     );
 
     const stringSteps =
-      tuningData.stringsTuning.InEdoStepsFromA[guitarStringIndex];
+      tuningData.stringsTuning.InEdoStepsFromRoot[guitarStringIndex];
     const stringRatio = getRatioFromEqualTemperament(
       tuningData.equalTemperament.count,
       tuningData.equalTemperament.base,
       stringSteps
     );
 
-    const ratio = fretRatio * stringRatio;
+    const mainFrequencyAdjustmentRatio =
+      tuningData.rootFrequency / audioSampleMainFrequency;
+
+    const ratio = fretRatio * stringRatio * mainFrequencyAdjustmentRatio;
     return ratio;
   }
 
@@ -56,17 +59,17 @@ function getRatioFromFret(
 
 function getNoteNameFromFret(guitarStringIndex: number, fretIndex: number) {
   const stringSteps =
-    tuningData.stringsTuning.InEdoStepsFromA[guitarStringIndex];
+    tuningData.stringsTuning.InEdoStepsFromRoot[guitarStringIndex];
 
   const fretStep =
     stringSteps + fretIndex * tuningData.equalTemperament.skipFretting;
 
-  let normalizedIndex = fretStep % tuningData.noteNamesFromA.length;
+  let normalizedIndex = fretStep % tuningData.noteNamesFromRoot.length;
   if (normalizedIndex < 0) {
-    normalizedIndex += tuningData.noteNamesFromA.length;
+    normalizedIndex += tuningData.noteNamesFromRoot.length;
   }
 
-  const noteName = tuningData.noteNamesFromA[normalizedIndex];
+  const noteName = tuningData.noteNamesFromRoot[normalizedIndex];
   return noteName;
 }
 

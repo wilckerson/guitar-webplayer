@@ -1,4 +1,5 @@
 export default {
+  rootFrequency: 110, //A2
   equalTemperament: {
     base: 2,
     count: 41,
@@ -6,7 +7,7 @@ export default {
   },
   stringsTuning: {
     //Kite Guitar - mid-6 down major tuning
-    InEdoStepsFromA: [
+    InEdoStepsFromRoot: [
       1 - 13, //^^F/vGb
       1, //^A
       1 + 13, //C#/^Db
@@ -15,7 +16,7 @@ export default {
       1 + 13 * 4, //^^C/vDb
     ],
   },
-  noteNamesFromA: [
+  noteNamesFromRoot: [
     "A",
     "^A",
     "^^A/vBb",
