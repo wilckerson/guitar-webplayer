@@ -8,3 +8,15 @@
   left: 50%;
   pointer-events: none;
 }
+
+.vibrationAnim {
+  animation: vibration 1.5s;
+}
+
+@keyframes vibration {
+  from {
+    width: 10px;
+    margin-left: -5px;
+    opacity: 0.3;
+  }
+}

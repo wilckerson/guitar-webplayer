@@ -11,7 +11,7 @@ export default function GuitarStringContainer(props: IGuitarStringProps) {
   const fretsArray = [...Array(Config.fretsPerString)];
   return (
     <div className={classes.guitarStringContainer}>
-      <GuitarString />
+      <GuitarString guitarStringIndex={props.index} />
       <Fret isOpenNote={true} index={0} guitarStringIndex={props.index} />
 
       <NutPiece />

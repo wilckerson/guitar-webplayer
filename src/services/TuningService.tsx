@@ -29,7 +29,7 @@ function getRatioFromMainFrequency(
 
   const stringRatio = Math.pow(intervalBetweenStrings, guitarStringIndex);
   const ratio = fretRatio * stringRatio;
-  return ratio;
+  return ratio / 1.5;
 }
 
 export default {

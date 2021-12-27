@@ -1,14 +1,19 @@
 import Config from "../Config";
+import mitt from "mitt";
 
-type TouchServiceListener = ((note: TouchedNote) => void) | undefined;
+//type TouchServiceListener = ((note: TouchedNote) => void) | undefined;
 
-type TouchedNote = {
+export type TouchedNote = {
   guitarStringIndex: number;
   fretIndex: number;
 };
 
-let onTouchNoteStart: TouchServiceListener = undefined;
-let onTouchNoteEnd: TouchServiceListener = undefined;
+export enum TouchServiceEvent {
+  OnTouchNoteStart,
+  OnTouchNoteEnd,
+}
+
+const emitter = mitt<Record<TouchServiceEvent, TouchedNote>>();
 
 const lastTouchPositionsOnString: (number | undefined)[] = [];
 const lastTouchedNotes: (TouchedNote | undefined)[] = [];
@@ -95,9 +100,7 @@ function handleTouch(touchEvent: React.TouchEvent) {
 
     lastTouchedNotes[currentTouch.identifier] = touchedNote;
 
-    if (onTouchNoteStart !== undefined) {
-      onTouchNoteStart(touchedNote);
-    }
+    emitter.emit(TouchServiceEvent.OnTouchNoteStart, touchedNote);
   }
 }
 
@@ -107,23 +110,16 @@ function handleTouchEnd(touchEvent: React.TouchEvent) {
 
   const lastTouchedNote = lastTouchedNotes[currentTouch.identifier];
 
-  if (lastTouchedNote && onTouchNoteEnd !== undefined) {
-    onTouchNoteEnd(lastTouchedNote);
+  if (lastTouchedNote) {
+    emitter.emit(TouchServiceEvent.OnTouchNoteEnd, lastTouchedNote);
   }
 
   lastTouchedNotes[currentTouch.identifier] = undefined;
 }
 
-function setListeners(
-  onTouchNoteStartListener: TouchServiceListener,
-  onTouchNoteEndListener: TouchServiceListener
-) {
-  onTouchNoteStart = onTouchNoteStartListener;
-  onTouchNoteEnd = onTouchNoteEndListener;
-}
-
 export default {
   handleTouch,
   handleTouchEnd,
-  setListeners,
+  addEventListener: emitter.on,
+  removeEventListener: emitter.off,
 };

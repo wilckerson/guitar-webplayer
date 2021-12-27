@@ -2,7 +2,7 @@
 import audioSamplePath from "./assets/audio-samples/homeGuitar.wav";
 
 export default {
-  guitarStringsCount: 4,
+  guitarStringsCount: 6,
   fretsPerString: 6, //36
   minimumDrag: 30,
   audioSamplePath,
