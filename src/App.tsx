@@ -1,6 +1,8 @@
-import WebPlayer from "./pages/WebPlayer";
 import React from "react";
+import HttpsRedirect from "react-https-redirect";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import WebPlayer from "./pages/WebPlayer";
+
 export default function App() {
   const darkTheme = createTheme({
     palette: {
@@ -16,8 +18,10 @@ export default function App() {
   });
 
   return (
-    <ThemeProvider theme={darkTheme}>
-      <WebPlayer />
-    </ThemeProvider>
+    <HttpsRedirect>
+      <ThemeProvider theme={darkTheme}>
+        <WebPlayer />
+      </ThemeProvider>
+    </HttpsRedirect>
   );
 }
