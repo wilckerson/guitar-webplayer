@@ -1,0 +1,13 @@
+.markerContainer {
+  position: absolute;
+  width: 100%;
+}
+
+.marker {
+  width: var(--markerSize);
+  height: var(--markerSize);
+  border-radius: 50%;
+  opacity: 0.8;
+  background: #ffffff;
+  background: linear-gradient(180deg, #ffffff 0%, #e1e3e4 61%);
+}

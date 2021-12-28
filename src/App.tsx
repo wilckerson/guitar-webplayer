@@ -18,10 +18,10 @@ export default function App() {
   });
 
   return (
-    <HttpsRedirect>
-      <ThemeProvider theme={darkTheme}>
-        <WebPlayer />
-      </ThemeProvider>
-    </HttpsRedirect>
+    // <HttpsRedirect>
+    <ThemeProvider theme={darkTheme}>
+      <WebPlayer />
+    </ThemeProvider>
+    // </HttpsRedirect>
   );
 }

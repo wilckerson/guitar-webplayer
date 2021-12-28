@@ -3,4 +3,5 @@
   border: 2px solid #513a33;
   border-top: none;
   box-shadow: inset 0px 32px 64px 0px rgba(0, 0, 0, 0.5);
+  position: relative;
 }

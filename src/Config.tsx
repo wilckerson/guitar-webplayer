@@ -11,8 +11,11 @@ const config = {
 };
 
 export const cssVariablesConfig = {
-  fretSize: "80px",
-  openNoteSize: "60px",
+  fretSize: "90px",
+  openNoteSize: "70px",
+  fretWireSize: "6px",
+  nutSize: "24px",
+  markerSize: "34px",
 };
 
 export default config;

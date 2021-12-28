@@ -73,7 +73,12 @@ function getNoteNameFromFret(guitarStringIndex: number, fretIndex: number) {
   return noteName;
 }
 
+function getMarkers() {
+  return tuningData.markers || [];
+}
+
 export default {
   getRatioFromFret,
   getNoteNameFromFret,
+  getMarkers,
 };

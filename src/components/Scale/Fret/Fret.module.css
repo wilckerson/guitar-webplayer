@@ -1,19 +1,22 @@
 .fret {
-  height: 6px;
+  height: var(--fretWireSize);
   background: #e1e3e4;
   background: linear-gradient(0deg, #b1acaa 0%, #e1e3e4 50%, #b1acaa 100%);
   pointer-events: none;
 }
 
 .fretContainer {
-  min-height: var(--fretSize);
+  height: var(--fretSize);
   pointer-events: none;
   writing-mode: vertical-lr;
-  color: rgba(255, 255, 255, 0.3);
+  color: rgb(255 255 255 / 30%);
   text-align: right;
-  padding-bottom: 6px;
+}
+
+.fretContainer span {
+  margin-bottom: 6px;
 }
 
 .openNote {
-  min-height: var(--openNoteSize);
+  height: var(--openNoteSize);
 }

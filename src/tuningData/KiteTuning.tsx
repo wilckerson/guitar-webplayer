@@ -5,6 +5,17 @@ export default {
     count: 41,
     skipFretting: 2,
   },
+  markers: [
+    { fret: 4, count: 1 },
+    { fret: 8, count: 2 },
+    { fret: 12, count: 3 },
+    { fret: 16, count: 1 },
+    { fret: 20, count: 2 },
+    { fret: 24, count: 3 },
+    { fret: 28, count: 1 },
+    { fret: 32, count: 2 },
+    { fret: 36, count: 3 },
+  ],
   stringsTuning: {
     //Kite Guitar - mid-6 down major tuning
     InEdoStepsFromRoot: [
