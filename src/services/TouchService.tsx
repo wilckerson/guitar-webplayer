@@ -1,5 +1,6 @@
 import Config from "../Config";
 import mitt from "mitt";
+import React from "react";
 
 //type TouchServiceListener = ((note: TouchedNote) => void) | undefined;
 
@@ -64,62 +65,96 @@ function getTouchedNoteFromPosition(x: number, y: number) {
   return undefined;
 }
 
-function handleTouch(touchEvent: React.TouchEvent) {
+function processTouchNoteStart(
+  touchId: number,
+  touchX: number,
+  touchY: number
+) {
   //TODO: Block beetwen strings motion (currently blocking a bit)
 
-  for (let index = 0; index < touchEvent.touches.length; index++) {
-    const currentTouch = touchEvent.touches[index];
+  const isNewTouch = isTouchStartOrEnoughDrag(
+    Config.minimumDrag,
+    touchId,
+    touchY
+  );
 
-    const isNewTouch = isTouchStartOrEnoughDrag(
-      Config.minimumDrag,
-      currentTouch.identifier,
-      currentTouch.pageY
-    );
-
-    if (isNewTouch == false) {
-      continue;
-    }
-
-    const touchedNote = getTouchedNoteFromPosition(
-      currentTouch.pageX,
-      currentTouch.pageY
-    );
-    if (!touchedNote) {
-      continue;
-    }
-
-    const lastTouchedNote = lastTouchedNotes[currentTouch.identifier];
-    const currentNoteIsSameAsLastNote =
-      lastTouchedNote &&
-      lastTouchedNote.guitarStringIndex === touchedNote.guitarStringIndex &&
-      lastTouchedNote.fretIndex === touchedNote.fretIndex;
-
-    if (currentNoteIsSameAsLastNote) {
-      continue;
-    }
-
-    lastTouchedNotes[currentTouch.identifier] = touchedNote;
-
-    emitter.emit(TouchServiceEvent.OnTouchNoteStart, touchedNote);
+  if (isNewTouch == false) {
+    return;
   }
+
+  const touchedNote = getTouchedNoteFromPosition(touchX, touchY);
+  if (!touchedNote) {
+    return;
+  }
+
+  const lastTouchedNote = lastTouchedNotes[touchId];
+  const currentNoteIsSameAsLastNote =
+    lastTouchedNote &&
+    lastTouchedNote.guitarStringIndex === touchedNote.guitarStringIndex &&
+    lastTouchedNote.fretIndex === touchedNote.fretIndex;
+
+  if (currentNoteIsSameAsLastNote) {
+    return;
+  }
+
+  lastTouchedNotes[touchId] = touchedNote;
+
+  emitter.emit(TouchServiceEvent.OnTouchNoteStart, touchedNote);
 }
 
-function handleTouchEnd(touchEvent: React.TouchEvent) {
-  const currentTouch = touchEvent.changedTouches[0];
-  lastTouchPositionsOnString[currentTouch.identifier] = undefined;
+function processTouchNoteEnd(touchId: number) {
+  lastTouchPositionsOnString[touchId] = undefined;
 
-  const lastTouchedNote = lastTouchedNotes[currentTouch.identifier];
+  const lastTouchedNote = lastTouchedNotes[touchId];
 
   if (lastTouchedNote) {
     emitter.emit(TouchServiceEvent.OnTouchNoteEnd, lastTouchedNote);
   }
 
-  lastTouchedNotes[currentTouch.identifier] = undefined;
+  lastTouchedNotes[touchId] = undefined;
+}
+
+function handleTouch(touchEvent: React.TouchEvent) {
+  for (let index = 0; index < touchEvent.touches.length; index++) {
+    const currentTouch = touchEvent.touches[index];
+
+    processTouchNoteStart(
+      currentTouch.identifier,
+      currentTouch.pageX,
+      currentTouch.pageY
+    );
+  }
+}
+
+function handleTouchEnd(touchEvent: React.TouchEvent) {
+  const currentTouch = touchEvent.changedTouches[0];
+  processTouchNoteEnd(currentTouch.identifier);
+}
+
+let isMouseDown = false;
+function handleMouseDown(mouseEvent: React.MouseEvent) {
+  isMouseDown = true;
+  processTouchNoteStart(0, mouseEvent.pageX, mouseEvent.pageY);
+}
+
+function handleMouseMove(mouseEvent: React.MouseEvent) {
+  if (isMouseDown == false) {
+    return;
+  }
+  processTouchNoteStart(0, mouseEvent.pageX, mouseEvent.pageY);
+}
+
+function handleMouseUp(mouseEvent: React.MouseEvent) {
+  isMouseDown = false;
+  processTouchNoteEnd(0);
 }
 
 export default {
   handleTouch,
   handleTouchEnd,
+  handleMouseDown,
+  handleMouseMove,
+  handleMouseUp,
   addEventListener: emitter.on,
   removeEventListener: emitter.off,
 };

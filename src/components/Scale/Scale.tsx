@@ -21,6 +21,9 @@ export default React.forwardRef(function Scale(props: IScaleProps, ref) {
       alignItems="stretch"
       spacing={0}
       className={classes.scale}
+      onMouseDown={TouchService.handleMouseDown}
+      onMouseMove={TouchService.handleMouseMove}
+      onMouseUp={TouchService.handleMouseUp}
       onTouchStart={TouchService.handleTouch}
       onTouchMove={TouchService.handleTouch}
       onTouchEnd={TouchService.handleTouchEnd}
