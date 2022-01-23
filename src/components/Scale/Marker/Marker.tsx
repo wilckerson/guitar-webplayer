@@ -38,7 +38,12 @@ export default function Marker(props: IMarkerProps) {
       style={{ top: topPosition + "px" }}
     >
       {markersArray.map((item, index) => (
-        <div className={classes.marker}>&nbsp;</div>
+        <div
+          key={"marker" + props.fretIndex + "-" + index}
+          className={classes.marker}
+        >
+          &nbsp;
+        </div>
       ))}
     </Stack>
   );
