@@ -57,6 +57,27 @@ export default React.forwardRef(function Scale(props: IScaleProps, ref) {
       }
       ref={ref}
     >
+      {!isHorizontalMode && (
+        <div id="touchIndicator0" className={classes.touchIndicator}>
+          &nbsp;
+        </div>
+      )}
+      {!isHorizontalMode && (
+        <div id="touchIndicator1" className={classes.touchIndicator}>
+          &nbsp;
+        </div>
+      )}
+      {!isHorizontalMode && (
+        <div id="touchIndicator2" className={classes.touchIndicator}>
+          &nbsp;
+        </div>
+      )}
+      {!isHorizontalMode && (
+        <div id="touchIndicator3" className={classes.touchIndicator}>
+          &nbsp;
+        </div>
+      )}
+
       {markers.map((item, index) => (
         <Marker
           key={"marker" + index}

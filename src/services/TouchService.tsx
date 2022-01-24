@@ -65,12 +65,32 @@ function getTouchedNoteFromPosition(x: number, y: number) {
 
   return undefined;
 }
+function updateTouchIndicator(touchId: number, touchX: number, touchY: number) {
+  var indicator = document.getElementById("touchIndicator" + touchId);
+  if (!indicator) {
+    return;
+  }
+
+  indicator.style.top = touchY + "px";
+  indicator.style.left = touchX + "px";
+  indicator.style.display = "block";
+}
+
+function hideTouchIndicator(touchId: number) {
+  var indicator = document.getElementById("touchIndicator" + touchId);
+  if (!indicator) {
+    return;
+  }
+  indicator.style.display = "none";
+}
 
 function processTouchNoteStart(
   touchId: number,
   touchX: number,
   touchY: number
 ) {
+  updateTouchIndicator(touchId, touchX, touchY);
+
   //TODO: Block beetwen strings motion (currently blocking a bit)
   const isHorizontalMode = HorizontalModeService.isHorizontalMode();
 
@@ -114,6 +134,7 @@ function processTouchNoteEnd(touchId: number) {
   }
 
   lastTouchedNotes[touchId] = undefined;
+  hideTouchIndicator(touchId);
 }
 
 function handleTouch(touchEvent: React.TouchEvent) {
