@@ -3,8 +3,6 @@ import mitt from "mitt";
 import React from "react";
 import HorizontalModeService from "./HorizontalModeService";
 
-//type TouchServiceListener = ((note: TouchedNote) => void) | undefined;
-
 export type TouchedNote = {
   guitarStringIndex: number;
   fretIndex: number;

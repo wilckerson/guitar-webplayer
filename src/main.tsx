@@ -6,12 +6,6 @@ import AudioService from "./services/AudioService";
 import Config, { cssVariablesConfig } from "./Config";
 import GuitarWebPlayerService from "./services/GuitarWebPlayerService";
 
-// AudioService.initAudioChannels(
-//   Config.guitarStringsCount,
-//   Config.audioSamplePath
-// );
-//TuningService.setTuning(kite)
-
 GuitarWebPlayerService.init();
 
 applyConfigCssVariables();

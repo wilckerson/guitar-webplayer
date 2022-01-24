@@ -4,9 +4,6 @@ import TouchService, { TouchedNote, TouchServiceEvent } from "./TouchService";
 import TuningService from "./TuningService";
 
 function onTouchNoteStart(note: TouchedNote) {
-  //console.log(`Str: ${guitarStringIndex} Frt: ${fretIndex}`);
-  //setDebugText(`Str: ${guitarStringIndex} Frt: ${fretIndex}`);
-
   const ratio = TuningService.getRatioFromFret(
     note.guitarStringIndex,
     note.fretIndex,
@@ -21,7 +18,6 @@ function onTouchNoteStart(note: TouchedNote) {
 }
 
 function onTouchNoteEnd(note: TouchedNote) {
-  //console.log("touchEnd", note.guitarStringIndex);
   AudioService.stopSoundNote(note.guitarStringIndex);
 }
 
