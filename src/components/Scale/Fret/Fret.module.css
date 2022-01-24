@@ -5,7 +5,13 @@
   pointer-events: none;
 }
 
-.fretContainer {
+.fret.horizontal {
+  width: var(--fretWireSize);
+  height: 100%;
+  background: linear-gradient(90deg, #b1acaa 0%, #e1e3e4 50%, #b1acaa 100%);
+}
+
+.noteContainer {
   height: var(--fretSize);
   pointer-events: none;
   writing-mode: vertical-lr;
@@ -13,10 +19,25 @@
   text-align: right;
 }
 
-.fretContainer span {
+.noteContainer.openNote {
+  height: var(--openNoteSize);
+}
+
+.noteContainer.horizontal {
+  writing-mode: initial;
+  text-align: left;
+  width: var(--fretSize);
+  height: var(--horizontalModeStringContainerHeight);
+}
+
+.noteContainer.horizontal.openNote {
+  width: var(--openNoteSize);
+}
+
+.noteContainer span {
   margin-bottom: 6px;
 }
 
-.openNote {
-  height: var(--openNoteSize);
+.fretContainer.horizontal {
+  display: flex;
 }

@@ -52,11 +52,12 @@ v2.0
 ========
 -Support slide
 -Support note expressivity (glide)
--Desktop version (Keyboard play)
+-ok Horizontal mode (Desktop)
+-Keyboard play
 -Customize open notes (other tuning options)
 -Highlight scales (Tonic center, scale list)
 
-Feedbacks
+Feedbacks/Improvements
 ========================
 -Touch indicator
 -Control fret spacing
@@ -64,6 +65,8 @@ Feedbacks
 -Work on large screen (Use the largest size to define orientation)
 -ok Mouse click
 -Fret number indicator
+-Lag on scroll scale
+-Miniature os scale in the scroll
 
 ----------------------------------------
 

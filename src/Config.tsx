@@ -11,6 +11,7 @@ const config = {
 };
 
 export const cssVariablesConfig = {
+  horizontalModeStringContainerHeight: "50px",
   fretSize: "90px",
   openNoteSize: "70px",
   fretWireSize: "6px",

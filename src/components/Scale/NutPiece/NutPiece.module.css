@@ -4,3 +4,9 @@
   height: var(--nutSize);
   width: 100%;
 }
+
+.nutPiece.horizontal {
+  width: var(--nutSize);
+  height: var(--horizontalModeStringContainerHeight);
+  background: linear-gradient(90deg, #4a453e 0%, #cecece 20%, #b1acab 100%);
+}

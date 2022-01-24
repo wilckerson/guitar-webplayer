@@ -1,4 +1,5 @@
 import Config from "../../../Config";
+import HorizontalModeService from "../../../services/HorizontalModeService";
 import Fret from "../Fret/Fret";
 import GuitarString from "../GuitarString/GuitarString";
 import NutPiece from "../NutPiece/NutPiece";
@@ -9,8 +10,14 @@ interface IGuitarStringProps {
 }
 export default function GuitarStringContainer(props: IGuitarStringProps) {
   const fretsArray = [...Array(Config.fretsPerString)];
+  const isHorizontalMode = HorizontalModeService.isHorizontalMode();
+
   return (
-    <div className={classes.guitarStringContainer}>
+    <div
+      className={`
+          ${classes.guitarStringContainer}
+          ${isHorizontalMode && classes.horizontal}`}
+    >
       <GuitarString guitarStringIndex={props.index} />
       <Fret isOpenNote={true} index={0} guitarStringIndex={props.index} />
 

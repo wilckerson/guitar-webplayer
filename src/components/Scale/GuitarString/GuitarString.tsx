@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import HorizontalModeService from "../../../services/HorizontalModeService";
 import TouchService, {
   TouchedNote,
   TouchServiceEvent,
@@ -10,6 +11,7 @@ interface IGuitarStringProps {
 }
 export default function GuitarString(props: IGuitarStringProps) {
   const guitarStringRef = useRef<null | HTMLDivElement>(null);
+  const isHorizontalMode = HorizontalModeService.isHorizontalMode();
 
   useEffect(() => {
     TouchService.addEventListener(
@@ -33,14 +35,24 @@ export default function GuitarString(props: IGuitarStringProps) {
 
   function playVibrationAnimation() {
     if (guitarStringRef.current) {
-      guitarStringRef.current.classList.remove(classes.vibrationAnim);
+      const vibrationAnim = isHorizontalMode
+        ? classes.vibrationAnimHorizontal
+        : classes.vibrationAnim;
+      guitarStringRef.current.classList.remove(vibrationAnim);
 
       // triggering reflow to start the animation again from the begining
       void guitarStringRef.current.offsetWidth;
 
-      guitarStringRef.current.classList.add(classes.vibrationAnim);
+      guitarStringRef.current.classList.add(vibrationAnim);
     }
   }
 
-  return <div ref={guitarStringRef} className={classes.guitarString}></div>;
+  return (
+    <div
+      ref={guitarStringRef}
+      className={`
+        ${classes.guitarString}
+        ${isHorizontalMode && classes.horizontal}`}
+    ></div>
+  );
 }

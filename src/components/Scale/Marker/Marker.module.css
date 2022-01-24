@@ -3,6 +3,11 @@
   width: 100%;
 }
 
+.markerContainer.horizontal {
+  height: 100%;
+  width: auto;
+}
+
 .marker {
   width: var(--markerSize);
   height: var(--markerSize);

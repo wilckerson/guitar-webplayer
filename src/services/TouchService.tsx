@@ -1,6 +1,7 @@
 import Config from "../Config";
 import mitt from "mitt";
 import React from "react";
+import HorizontalModeService from "./HorizontalModeService";
 
 //type TouchServiceListener = ((note: TouchedNote) => void) | undefined;
 
@@ -71,11 +72,12 @@ function processTouchNoteStart(
   touchY: number
 ) {
   //TODO: Block beetwen strings motion (currently blocking a bit)
+  const isHorizontalMode = HorizontalModeService.isHorizontalMode();
 
   const isNewTouch = isTouchStartOrEnoughDrag(
     Config.minimumDrag,
     touchId,
-    touchY
+    isHorizontalMode ? touchX : touchY
   );
 
   if (isNewTouch == false) {

@@ -9,6 +9,14 @@
   pointer-events: none;
 }
 
+.guitarString.horizontal {
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(0deg, #616161 0%, #b1a694 50%, #616161 100%);
+  left: initial;
+  top: 50%;
+}
+
 .vibrationAnim {
   animation: vibration 1.5s;
 }
@@ -17,6 +25,18 @@
   from {
     width: 10px;
     margin-left: -5px;
+    opacity: 0.3;
+  }
+}
+
+.vibrationAnimHorizontal {
+  animation: vibrationHorizontal 1.5s;
+}
+
+@keyframes vibrationHorizontal {
+  from {
+    height: 10px;
+    margin-top: -5px;
     opacity: 0.3;
   }
 }

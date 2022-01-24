@@ -2,3 +2,7 @@
   position: relative;
   flex-grow: 1;
 }
+
+.guitarStringContainer.horizontal {
+  display: flex;
+}
